@@ -1,3 +1,8 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 1 optimization:
+# - [MEDIUM] Add concurrency group to "spelling.yml"
+# Estimated savings: ~2 min/run
+#
 name: Check Spelling
 
 # Comment management is handled through a secondary job, for details see:
@@ -74,6 +79,10 @@ on:
     types:
     - 'created'
 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   spelling:
     name: Check Spelling

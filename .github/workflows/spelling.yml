@@ -85,6 +85,7 @@ jobs:
     outputs:
       followup: ${{ steps.spelling.outputs.followup }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: ${{ contains(github.event_name, 'pull_request') || github.event_name == 'push' }}
     concurrency:
       group: spelling-${{ github.event.pull_request.number || github.ref }}
